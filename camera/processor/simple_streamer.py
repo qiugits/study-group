@@ -21,6 +21,6 @@ class SimpleStreamer(object):
 
     def get_frame(self):
         frame = self.flip_if_needed(self.vs.read())
-        edge = cv2.Canny(frame)
-        ret, jpeg = cv2.imencode('.jpg', edge)
+        ret, jpeg = cv2.imencode('.jpg', frame)
+        jpeg = cv2.Canny(jpeg, 50, 110)
         return jpeg.tobytes()
